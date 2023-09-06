@@ -1,0 +1,236 @@
+@import 'typo';
+@import 'form';
+
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), url('@/assets/fonts/Poppins/Poppins-Thin.ttf') format('truetype');
+  font-weight: thin;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), url('@/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), url('@/assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), url('@/assets/fonts/Poppins/Poppins-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+:root {
+  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', Segoe UI Symbol,;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  @apply font-normal text-base;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling : touch !important;
+}
+
+body {
+  min-height: 100vh;
+  height: env(safe-area-inset-top);
+  width: env(safe-area-inset-left);
+  margin: env(safe-area-inset-right);
+  // you can also use fallback values
+  padding: env(safe-area-inset-bottom, 20px);
+  overflow: hidden;
+}
+
+* {
+  box-sizing: inherit;
+  ::-webkit-scrollbar {
+    width: 0rem;
+    height: 0px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 183, 236, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+}
+
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+.svg-line {
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+@layer components {
+  * {
+    @apply select-none;
+  }
+  .card {
+    @apply bg-white rounded-[16px] shadow-[0px_6px_20px_rgba(0,0,0,0.06)] overflow-hidden
+  }
+  .wrapper {
+    @apply w-full h-full relative
+  }
+  .center {
+    @apply absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%]
+  }
+}
+
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+/*  LIST ANIMATION* /
+
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+
+
+/* FADE */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* SLIDE FADE FROM LEFT => RIGHT, RIGHT => LEFT*/
+.slide-fade-left-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-left-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-left-enter-from,
+.slide-fade-left-leave-to {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+
+/* SLIDE FADE FROM RIGHT => LEFT, LEFT => RIGHT*/
+.slide-fade-right-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-right-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-right-enter-from,
+.slide-fade-right-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
+}
+
+
+/* SLIDE FADE FROM TOP => BOTTOM, BOTTOM => TOP*/
+.slide-fade-down-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-down-leave-active {
+  transition: all 0.8s ease-out;
+}
+
+.slide-fade-down-enter-from,
+.slide-fade-down-leave-to {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 0;
+}
+
+/* SLIDE FADE FROM BOTTOM => TOP, TOP => BOTTOM*/
+.slide-fade-up-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-up-leave-active {
+  transition: all 0.8s ease-out;
+}
+
+.slide-fade-up-enter-from,
+.slide-fade-up-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+
+/* Scale UP => 1, Scale DOWN to 0*/
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+  /* Key frames */
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
